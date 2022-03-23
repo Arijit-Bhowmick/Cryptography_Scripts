@@ -6,3 +6,7 @@
 ## Rail Fence Cipher
 
 **File name :** RailFence_Cipher.rb
+
+## Ceaser Cipher
+
+**File name :** Ceaser_Cipher.rb
