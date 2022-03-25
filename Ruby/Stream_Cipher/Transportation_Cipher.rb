@@ -13,12 +13,10 @@ class Transportation_Cipher
 		
 		puts '','MATRIX:',''
 		(0..(matrix.length-1)).step(1) do |i|
+			puts format % matrix[i]
+			
 			if i<2
-				puts format % matrix[i]
 				puts format % (('-'*matrix[0].length).chars)
-
-			else
-				puts format % matrix[i]
 			end
 		end
 
@@ -36,7 +34,7 @@ class Transportation_Cipher
 
 		key_matrix = Array.new(key.length,'')
 
-		pt_matrix = Array.new((plain_text.length-plain_text.length%key.length)/key.length){Array.new(key.length, '')}
+		pt_matrix = Array.new(plain_text.chars.each_slice(key.length).to_a.map(&:join).length){Array.new(key.length, '')}
 
 		# Set Matrix for key elements [KEY_MATRIX]
 
@@ -89,8 +87,8 @@ class Transportation_Cipher
 
 		key_matrix = Array.new(key.length,'')
 
-		ct_matrix = Array.new((cipher_text.length-cipher_text.length%key.length)/key.length){Array.new(key.length, '')}
-
+		# Set Cipher_Text MATRIX Layout
+		ct_matrix = cipher_text.chars.each_slice(key.length).to_a
 
 		# Set Matrix for key elements [KEY_MATRIX]
 
@@ -102,13 +100,16 @@ class Transportation_Cipher
 		# Set Matrix for Text elements [TEXT_MATRIX]
 		marker=0
 		key_sorted = key_matrix
+
 		(0..(key_matrix.length-1)).step(1) do |i|
 			(0..(ct_matrix.length-1)).step(1) do |j|
 
-
-				if marker!=cipher_text.length
+				if ct_matrix[j][key_matrix.index(i)]==nil
+					ct_matrix[j][key_matrix.index(i)]=''
+				elsif marker!=cipher_text.length
 					ct_matrix[j][key_matrix.index(i)]=cipher_text[marker]
 					marker+=1
+
 				end
 			end
 		end
@@ -135,8 +136,8 @@ end
 
 # --------------------------------
 
-plain_text = 'Arijit Bhowmick'
-cipher_text = 'imjw cABiotirh'
+plain_text = 'Arijit Bhowmick 123'
+cipher_text = 'im3jw2 cABkio1tirh '
 key = 'syS41x4'
 
 puts "Plain Text => #{plain_text}"
