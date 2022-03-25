@@ -29,14 +29,14 @@ def Ceaser_Cipher(process='encode', text=None, key=None):
 
 
 	for i in text:
-		if (text[i].upper() not in charset):
+		if (i.upper() not in charset):
 			result+=i
 
 		else:
 
 			replacer = charset[charset.index(i.upper())+key-charset_length]
 
-			if text[i] == i.lower():
+			if i == i.lower():
 				result+=replacer.lower()
 			else:
 				result+=replacer
@@ -48,7 +48,7 @@ def Ceaser_Cipher(process='encode', text=None, key=None):
 key = 6
 # Encode PlainText
 plain_text = 'Hello Arijit Bhowmick !!!'
-print(f"CipherText of {plain_text} having key = {key} => {Ceaser_Cipher('encode',cipher_text, key)}")
+print(f"CipherText of {plain_text} having key = {key} => {Ceaser_Cipher('encode',plain_text, key)}")
 
 # Decode CipherText
 cipher_text=' Nkrru Gxopoz Hnucsoiq !!!'
