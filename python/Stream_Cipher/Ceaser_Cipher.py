@@ -28,15 +28,15 @@ def Ceaser_Cipher(process='encode', text=None, key=None):
 	result = ''
 
 
-	for i in range (len(text)):
+	for i in text:
 		if (text[i].upper() not in charset):
-			result+=text[i]
+			result+=i
 
 		else:
 
-			replacer = charset[charset.index(text[i].upper())+key-charset_length]
+			replacer = charset[charset.index(i.upper())+key-charset_length]
 
-			if text[i] == text[i].lower():
+			if text[i] == i.lower():
 				result+=replacer.lower()
 			else:
 				result+=replacer
