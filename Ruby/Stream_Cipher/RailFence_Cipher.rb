@@ -28,8 +28,6 @@ class RailFence_Cipher
         # RailFence Encoder Function
         # Considering offset=0
 
-        #plain_text_Length = plain_text.length
-
         matrix = Array.new(key) {Array.new(plain_text.length, '')}
 
         # to find the direction
@@ -58,14 +56,12 @@ class RailFence_Cipher
         end
 
         cipher_text = '' # Used as CipherText (str)
-        #cipher_text = [] # Used as CipherText (array)
 
         (0..(key-1)).step(1) do |i|   
 
             #for j in range(len(text)):
             (0..(plain_text.length-1)).step(1) do |j| 
                 if matrix[i][j] != ''
-                    #cipher_text.append(matrix[i][j])
                     cipher_text.concat(matrix[i][j])
                 end
             end
@@ -84,8 +80,6 @@ class RailFence_Cipher
 
         # RailFence Decoder Function
         # Considering offset=0
-
-        # cipher_text_length = cipher_text.length
 
         row_range = 0..key
         column_range = 0..cipher_text.length
@@ -132,7 +126,6 @@ class RailFence_Cipher
         # zig-zag manner to construct
         # the resultant text
 
-        #plain_text = [] # Used as PlainText (array)
         plain_text = '' # Used as PlainText (str)
         row, col = 0, 0
 
@@ -146,7 +139,6 @@ class RailFence_Cipher
             end
             # place the marker
             if (matrix[row][col] != '\m')
-                #plain_text.append(matrix[row][col])
                 plain_text.concat(matrix[row][col])
                 col += 1 
             end   
